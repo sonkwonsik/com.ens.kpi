@@ -5,10 +5,20 @@
       <children xsi:type="basic:PartStack" xmi:id="_6wlLk8gZEeSyMNYR5xypkQ" elementId="com.ens.kpi.partstack.sample" containerData="400">
         <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="com.ens.kpi.part.sample" contributionURI="bundleclass://com.ens.kpi/com.ens.kpi.parts.SummaryPart" label="KPI 요약"/>
       </children>
-      <children xsi:type="basic:PartStack" xmi:id="_Wi6y0AAAEeiMU4RAbV0wdA" elementId="com.ens.kpi.partstack.0" containerData="600">
-        <children xsi:type="basic:CompositePart" xmi:id="_XipKcAAAEeiMU4RAbV0wdA" elementId="com.ens.kpi.compositepart.evidence" containerData="650">
-          <children xsi:type="basic:Part" xmi:id="_YhDTcAAAEeiMU4RAbV0wdA" elementId="com.ens.kpi.part.EvidencePart" containerData="200" contributionURI="bundleclass://com.ens.kpi/com.ens.kpi.parts.EvidencePart"/>
-          <children xsi:type="basic:Part" xmi:id="_ZJKcUAAAEeiMU4RAbV0wdA" elementId="com.ens.kpi.part.RegistrationPart" containerData="450" contributionURI="bundleclass://com.ens.kpi/com.ens.kpi.parts.RegistrationPart"/>
+      <children xsi:type="basic:PartSashContainer" xmi:id="_rciEsAPfEei-cbo3aRtnRQ" elementId="com.ens.kpi.partsashcontainer.0" containerData="600">
+        <children xsi:type="basic:PartStack" xmi:id="_Noe9YAPwEeiyOP_iiR3Mjg" elementId="com.ens.kpi.partstack.EvidencePart" containerData="200">
+          <children xsi:type="basic:Part" xmi:id="_YhDTcAAAEeiMU4RAbV0wdA" elementId="com.ens.kpi.part.EvidencePart" containerData="200" contributionURI="bundleclass://com.ens.kpi/com.ens.kpi.parts.EvidencePart">
+            <toolbar xmi:id="_YYuAEAPgEei-cbo3aRtnRQ" elementId="com.ens.kpi.toolbar.0"/>
+          </children>
+        </children>
+        <children xsi:type="basic:PartStack" xmi:id="_SSzXcAPwEeiyOP_iiR3Mjg" elementId="com.ens.kpi.partstack.RegistrationPart" containerData="400">
+          <children xsi:type="basic:Part" xmi:id="_ZJKcUAAAEeiMU4RAbV0wdA" elementId="com.ens.kpi.part.RegistrationPart" containerData="400" contributionURI="bundleclass://com.ens.kpi/com.ens.kpi.parts.RegistrationPart">
+            <toolbar xmi:id="_Y458AAPgEei-cbo3aRtnRQ" elementId="com.ens.kpi.toolbar.1">
+              <children xsi:type="menu:HandledToolItem" xmi:id="_rb0qUAPwEeiyOP_iiR3Mjg" elementId="com.ens.kpi.handledtoolitem.save" label="Save" iconURI="platform:/plugin/com.ens.kpi/icons/save_edit.png"/>
+              <children xsi:type="menu:ToolBarSeparator" xmi:id="_1MIGwAPwEeiyOP_iiR3Mjg" elementId="com.ens.kpi.toolbarseparator.0"/>
+              <children xsi:type="menu:HandledToolItem" xmi:id="_1ukFcAPwEeiyOP_iiR3Mjg" elementId="com.ens.kpi.handledtoolitem.delete" label="Delete"/>
+            </toolbar>
+          </children>
         </children>
       </children>
     </children>

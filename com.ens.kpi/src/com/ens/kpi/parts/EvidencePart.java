@@ -40,6 +40,9 @@ import com.ens.kpi.daos.EvidenceDAO;
 import com.ens.kpi.models.EvidenceMasterVO;
 import com.ens.kpi.models.SummaryVO;
 import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.GridData;
 
 public class EvidencePart {
 	@Inject
@@ -62,15 +65,12 @@ public class EvidencePart {
 	@PostConstruct
 	public void createControls(Composite parent) {
 		String[] COLUMN_HEADER = new String[]{"증빙번호","등록일자","관점","전략과제","목표과제","증빙유형","목표치"};
-		
-		/*
-		 * TableViewer 생성 및 각종 기본 설정
-		 */
-		parent.setLayout(new FillLayout(SWT.HORIZONTAL));
+		parent.setLayout(new GridLayout(1, false));
 		tableViewer = new TableViewer(parent, SWT.BORDER|SWT.FULL_SELECTION);
 		tableViewer.setUseHashlookup(true);    // table 렌더링 속도 향상
 		
 		Table table=tableViewer.getTable();
+		table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 //        table.setLayout(layout);
         table.setLinesVisible(true);
         table.setHeaderVisible(true);

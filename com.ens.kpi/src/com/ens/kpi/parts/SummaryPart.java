@@ -345,7 +345,7 @@ public class SummaryPart {
 				selectionService.setSelection(selection.size() == 1 ? selection.getFirstElement() : selection.toArray());
 				
 				
-				MPart part=partService.findPart("com.ens.kpi.compositepart.evidence");
+				MPart part=partService.findPart("com.ens.kpi.part.EvidencePart");
 				String label1="";
 				label1=s.getHEMP_NAME();
 				if (!s.getHPERSPECTIVE_NAME().equals("")) {

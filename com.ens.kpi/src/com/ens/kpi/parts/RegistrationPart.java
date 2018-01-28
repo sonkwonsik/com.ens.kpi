@@ -92,6 +92,7 @@ public class RegistrationPart {
 		parent.setLayout(new GridLayout(2, false));
 		
 		Label lblEmployee = new Label(parent, SWT.NONE);
+		lblEmployee.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblEmployee.setText("Employee");
 		
 		txtEmployee = new Text(parent, SWT.BORDER);
@@ -107,6 +108,7 @@ public class RegistrationPart {
 		w.put("CODE_ID", "A0000001");
 		
 		Label lblTeam = new Label(parent, SWT.NONE);
+		lblTeam.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblTeam.setText("Team");
 		
 		cboViewerTeam = new ComboViewer(parent, SWT.NONE);
@@ -127,6 +129,7 @@ public class RegistrationPart {
 		
 		
 		Label lblRegistrationDate = new Label(parent, SWT.NONE);
+		lblRegistrationDate.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblRegistrationDate.setText("Registration Date");
 		
 		txtRegistrationDate = new Text(parent, SWT.BORDER);
@@ -134,6 +137,7 @@ public class RegistrationPart {
 		txtRegistrationDate.setTextLimit(10);
 		
 		Label lblPerspective = new Label(parent, SWT.NONE);
+		lblPerspective.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblPerspective.setText("Perspective");
 		
 		cboViewerPerspective = new ComboViewer(parent, SWT.NONE);
@@ -162,6 +166,7 @@ public class RegistrationPart {
 		w.put("CODE_ID", "B0000003");
 		
 		Label lblStrategicSubject = new Label(parent, SWT.NONE);
+		lblStrategicSubject.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblStrategicSubject.setText("Strategic Subject");
 		
 		cboViewerStrategicSubject = new ComboViewer(parent, SWT.NONE);
@@ -181,6 +186,7 @@ public class RegistrationPart {
 		cboViewerStrategicSubject.setInput(commonCodeDAO.getList(w));
 		
 		Label lblTask = new Label(parent, SWT.NONE);
+		lblTask.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblTask.setText("Task");
 		
 		cboViewerTask = new ComboViewer(parent, SWT.NONE);
@@ -194,6 +200,7 @@ public class RegistrationPart {
 		cboViewerTask.setInput(commonCodeDAO.getList(w));
 		
 		Label lblEvidenceName = new Label(parent, SWT.NONE);
+		lblEvidenceName.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblEvidenceName.setText("Evidence Name");
 		
 		txtEvidenceName = new Text(parent, SWT.BORDER);
@@ -203,6 +210,7 @@ public class RegistrationPart {
 		w.put("'1'", "1");
 		
 		Label lblEvidenceType = new Label(parent, SWT.NONE);
+		lblEvidenceType.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblEvidenceType.setText("Evidence Type");
 		
 		cboViewerEvidenceType = new ComboViewer(parent, SWT.NONE);
@@ -216,26 +224,29 @@ public class RegistrationPart {
 		
 		
 		Label lblApprovalDate = new Label(parent, SWT.NONE);
+		lblApprovalDate.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblApprovalDate.setText("Evidence Date");
 		
 		txtEvidenceDate = new Text(parent, SWT.BORDER);
 		txtEvidenceDate.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
 		Label lblImplementationTimes = new Label(parent, SWT.NONE);
+		lblImplementationTimes.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblImplementationTimes.setText("Implement Times");
 		
 		txtImplementationTimes = new Text(parent, SWT.BORDER);
 		txtImplementationTimes.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
 		Label lblScore = new Label(parent, SWT.NONE);
+		lblScore.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblScore.setText("Score");
 		
 		txtScore = new Text(parent, SWT.BORDER);
 		txtScore.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		new Label(parent, SWT.NONE);
 		
-		ToolBar toolBar = new ToolBar(parent, SWT.NONE);
-		toolBar.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		ToolBar toolBar = new ToolBar(parent, SWT.FLAT);
+		toolBar.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, true, false, 1, 1));
 		
 		ToolItem tltmNewItem = new ToolItem(toolBar, SWT.NONE);
 		tltmNewItem.setText("Add");
@@ -244,13 +255,14 @@ public class RegistrationPart {
 		tltmNewItem_1.setText("Remove");
 		
 		Label lblEvidence = new Label(parent, SWT.NONE);
+		lblEvidence.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, false, false, 1, 1));
 		lblEvidence.setText("Evidence");
 		
 		
 		
 		tblViewerEvidence = new TableViewer(parent, SWT.BORDER | SWT.FULL_SELECTION);
 		tblEvidence = tblViewerEvidence.getTable();
-		tblEvidence.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		tblEvidence.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false, 1, 1));
 	}
 
 	@PreDestroy
