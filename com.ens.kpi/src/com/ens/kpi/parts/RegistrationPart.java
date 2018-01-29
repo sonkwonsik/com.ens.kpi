@@ -13,7 +13,9 @@ import javax.inject.Named;
 
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.model.application.ui.MDirtyable;
+import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
@@ -47,7 +49,14 @@ import com.ens.kpi.models.EvidenceTypeVO;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormAttachment;
+import org.eclipse.wb.swt.ResourceManager;
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.core.databinding.beans.BeanProperties;
+import org.eclipse.core.databinding.beans.PojoProperties;
 public class RegistrationPart {
+	private DataBindingContext m_bindingContext;
 	@Inject
 	private MDirtyable dirty;
 	boolean isModified	=	true;
@@ -74,8 +83,8 @@ public class RegistrationPart {
 	DBConnection	dbCon;
 	CommonCodeDAO commonCodeDAO	=	new CommonCodeDAO();
 	EvidenceTypeDAO evidenceTypeDAO =	new EvidenceTypeDAO();
+	EvidenceMasterVO evidenceMasterVO	=	new	EvidenceMasterVO();
 	
-//	CollectionUtils	collectionUtils	=	new	CollectionUtils();
 	public RegistrationPart() {
 		DBConnection dbCon	=	new DBConnection();
 		con	= 	dbCon.getConnection();
@@ -99,7 +108,6 @@ public class RegistrationPart {
 		txtEmployee.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		txtEmployee.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
-				
 				dirty.setDirty(true);
 			}
 		});
@@ -118,6 +126,7 @@ public class RegistrationPart {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				dirty.setDirty(true);
+				
 			}
 		});
 		
@@ -154,16 +163,11 @@ public class RegistrationPart {
 		cboViewerPerspective.setLabelProvider(new CommonCodeLabelProvider());
 		cboViewerPerspective.addSelectionChangedListener(new CommonCodeSelectionChangedListener());
 		
-		w	=	new	HashMap<>();
+		w.clear();
 		w.put("CODE_ID", "B0000001");
-		
 		cboViewerPerspective.setInput(commonCodeDAO.getList(w));
 		
-		w	=	new	HashMap<>();
-		w.put("CODE_ID", "B0000002");
-		
-		w	=	new	HashMap<>();
-		w.put("CODE_ID", "B0000003");
+
 		
 		Label lblStrategicSubject = new Label(parent, SWT.NONE);
 		lblStrategicSubject.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
@@ -183,6 +187,8 @@ public class RegistrationPart {
 		cboViewerStrategicSubject.setLabelProvider(new CommonCodeLabelProvider());
 		cboViewerStrategicSubject.addSelectionChangedListener(new CommonCodeSelectionChangedListener());
 		
+		w.clear();
+		w.put("CODE_ID", "B0000002");
 		cboViewerStrategicSubject.setInput(commonCodeDAO.getList(w));
 		
 		Label lblTask = new Label(parent, SWT.NONE);
@@ -196,7 +202,9 @@ public class RegistrationPart {
 		cboViewerTask.setContentProvider(ArrayContentProvider.getInstance());
 		cboViewerTask.setLabelProvider(new CommonCodeLabelProvider());
 		cboViewerTask.addSelectionChangedListener(new CommonCodeSelectionChangedListener());
-		
+
+		w.clear();
+		w.put("CODE_ID", "B0000003");
 		cboViewerTask.setInput(commonCodeDAO.getList(w));
 		
 		Label lblEvidenceName = new Label(parent, SWT.NONE);
@@ -206,7 +214,7 @@ public class RegistrationPart {
 		txtEvidenceName = new Text(parent, SWT.BORDER);
 		txtEvidenceName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
-		w	=	new	HashMap<>();
+		w.clear();
 		w.put("'1'", "1");
 		
 		Label lblEvidenceType = new Label(parent, SWT.NONE);
@@ -249,10 +257,12 @@ public class RegistrationPart {
 		toolBar.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, true, false, 1, 1));
 		
 		ToolItem tltmNewItem = new ToolItem(toolBar, SWT.NONE);
-		tltmNewItem.setText("Add");
+		tltmNewItem.setToolTipText("Add");
+		tltmNewItem.setImage(ResourceManager.getPluginImage("com.ens.kpi", "icons/if_199_CircledPlus_183316.png"));
 		
 		ToolItem tltmNewItem_1 = new ToolItem(toolBar, SWT.NONE);
-		tltmNewItem_1.setText("Remove");
+		tltmNewItem_1.setToolTipText("Remove");
+		tltmNewItem_1.setImage(ResourceManager.getPluginImage("com.ens.kpi", "icons/if_200_CircledMinus_183317.png"));
 		
 		Label lblEvidence = new Label(parent, SWT.NONE);
 		lblEvidence.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, false, false, 1, 1));
@@ -263,6 +273,9 @@ public class RegistrationPart {
 		tblViewerEvidence = new TableViewer(parent, SWT.BORDER | SWT.FULL_SELECTION);
 		tblEvidence = tblViewerEvidence.getTable();
 		tblEvidence.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false, 1, 1));
+		
+		
+		m_bindingContext = initDataBindings();
 	}
 
 	@PreDestroy
@@ -273,9 +286,27 @@ public class RegistrationPart {
 	public void setFocus() {
 		// TODO	Set the focus to control
 	}
+	
+//	private void allocationFields() { 
+//		evidenceMasterVO.setEMP_ID(txtEmployee.getText());
+//		
+//		CommonCodeVO c = (CommonCodeVO)cboViewerTeam.getSelection();
+//		if (c!=null)
+//			evidenceMasterVO.setTEAM_CD(c.getCode_id());
+//		
+//		c = (CommonCodeVO)cboViewerPerspective.getSelection();
+//		if (c!=null)
+//			evidenceMasterVO.setPERSPECTIVE(c.getCode_id());
+//		
+//		System.out.println("111");
+//		System.out.println(evidenceMasterVO.getEMP_ID());
+//		System.out.println(evidenceMasterVO.getTEAM_CD());
+//		System.out.println(evidenceMasterVO.getPERSPECTIVE());
+//	 } 
 	@Inject
 	public void setEvidenceMaster(@Optional @Named(IServiceConstants.ACTIVE_SELECTION) EvidenceMasterVO evidenceMaster) {
 	    if(evidenceMaster != null ) {
+	    	evidenceMasterVO=evidenceMaster;
 	    	try {
 	    		txtEmployee.setText(evidenceMaster.getEMP_ID());
 //	    		lblEmployeeName.setText(evidenceMaster.getEMP_NAME());
@@ -308,6 +339,7 @@ public class RegistrationPart {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+	    	dirty.setDirty(false);
 //	    	refresh();
 	    }
 	}
@@ -333,20 +365,11 @@ public class RegistrationPart {
 		}
 		return c;
 	}
-//	private int SelectCombo(Combo cbo, String val) {
-//		for (int i=0;i<cbo.getItemCount();i++) {
-//			if (cbo.getData(val) 
-//				
-//			}
-//		}
-//		
-//		return 0;
-//		
-//	}
+
 	public void setEvidenceDetail(EvidenceMasterVO e) throws SQLException {
 		ResultSet	rs	=	null;
 		
-		EvidenceMasterVO evidenceMasterVO	=	null;
+//		EvidenceMasterVO evidenceMasterVO	=	null;
 		
 //		evidenceDetailDAO.setConnection(con);
 //		rs=evidenceDetailDAO.selectEvidenceDetail(e.getEVIDENCE_SEQ());
@@ -420,5 +443,83 @@ public class RegistrationPart {
 		        }
 		}
 
+	}
+	
+	@Persist
+	public void save(MPart part) {
+//		public void save(MPart part, ITodoService todoService) {
+	    // save changes via ITodoService for example
+//	    todoService.saveTodo(todo);
+	    // save was successful
+		m_bindingContext = initDataBindings();
+		System.out.println("===========");
+		System.out.println(evidenceMasterVO.getEMP_ID());
+		System.out.println(evidenceMasterVO.getTEAM_CD());
+		System.out.println(evidenceMasterVO.getTEAM_NAME());
+		System.out.println(evidenceMasterVO.getEVIDENCE_DATE());
+		System.out.println(evidenceMasterVO.getEVIDENCE_TYPE());
+		System.out.println(evidenceMasterVO.getEVIDENCE_TYPE_NAME());
+		System.out.println(evidenceMasterVO.getPERSPECTIVE());
+		System.out.println(evidenceMasterVO.getPERSPECTIVE_NAME());
+		System.out.println(evidenceMasterVO.getSTRATEGIC_SUBJECT());
+		System.out.println(evidenceMasterVO.getSTRATEGIC_SUBJECT_NAME());
+		System.out.println(evidenceMasterVO.getTASK());
+		System.out.println(evidenceMasterVO.getTASK_NAME());
+		System.out.println(evidenceMasterVO.getIMPLEMENTATION_TIMES());
+		
+	    part.setDirty(false);
+	}
+	
+	protected DataBindingContext initDataBindings() {
+		DataBindingContext bindingContext = new DataBindingContext();
+		//
+//		IObservableValue observeTextTxtEmployeeObserveWidget = WidgetProperties.text(SWT.Modify).observe(txtEmployee);
+//		IObservableValue eMP_IDEvidenceMasterVOObserveValue = BeanProperties.value("EMP_ID").observe(evidenceMasterVO);
+//		bindingContext.bindValue(observeTextTxtEmployeeObserveWidget, eMP_IDEvidenceMasterVOObserveValue, null, null);
+		//
+		
+		
+		IObservableValue<Text> observeTextTxtEmployeeObserveWidget = WidgetProperties.text(SWT.Modify).observe(txtEmployee);
+        IObservableValue<EvidenceMasterVO> eMP_IDEvidenceMasterVOObserveValue = PojoProperties.value("EMP_ID").observe(evidenceMasterVO);
+        bindingContext.bindValue(observeTextTxtEmployeeObserveWidget, eMP_IDEvidenceMasterVOObserveValue);
+        
+		
+		IObservableValue observeTextCboTeamObserveWidget = WidgetProperties.text().observe(cboTeam);
+		IObservableValue tEAM_CDEvidenceMasterVOObserveValue = BeanProperties.value("TEAM_CD").observe(evidenceMasterVO);
+		bindingContext.bindValue(observeTextCboTeamObserveWidget, tEAM_CDEvidenceMasterVOObserveValue, null, null);
+		//
+		IObservableValue observeTextTxtRegistrationDateObserveWidget = WidgetProperties.text(SWT.Modify).observe(txtRegistrationDate);
+		IObservableValue rEGISTRATION_DATEEvidenceMasterVOObserveValue = BeanProperties.value("REGISTRATION_DATE").observe(evidenceMasterVO);
+		bindingContext.bindValue(observeTextTxtRegistrationDateObserveWidget, rEGISTRATION_DATEEvidenceMasterVOObserveValue, null, null);
+		//
+		IObservableValue observeTextCboStrategicSubjectObserveWidget = WidgetProperties.text().observe(cboStrategicSubject);
+		IObservableValue sTRATEGIC_SUBJECTEvidenceMasterVOObserveValue = BeanProperties.value("STRATEGIC_SUBJECT").observe(evidenceMasterVO);
+		bindingContext.bindValue(observeTextCboStrategicSubjectObserveWidget, sTRATEGIC_SUBJECTEvidenceMasterVOObserveValue, null, null);
+		//
+		IObservableValue observeTextCboTaskObserveWidget = WidgetProperties.text().observe(cboTask);
+		IObservableValue tASKEvidenceMasterVOObserveValue = BeanProperties.value("TASK").observe(evidenceMasterVO);
+		bindingContext.bindValue(observeTextCboTaskObserveWidget, tASKEvidenceMasterVOObserveValue, null, null);
+		//
+		IObservableValue observeTextTxtEvidenceNameObserveWidget = WidgetProperties.text(SWT.Modify).observe(txtEvidenceName);
+		IObservableValue eVIDENCE_NAMEEvidenceMasterVOObserveValue = BeanProperties.value("EVIDENCE_NAME").observe(evidenceMasterVO);
+		bindingContext.bindValue(observeTextTxtEvidenceNameObserveWidget, eVIDENCE_NAMEEvidenceMasterVOObserveValue, null, null);
+		//
+		IObservableValue observeTextCboEvidenceTypeObserveWidget = WidgetProperties.text().observe(cboEvidenceType);
+		IObservableValue eVIDENCE_TYPEEvidenceMasterVOObserveValue = BeanProperties.value("EVIDENCE_TYPE").observe(evidenceMasterVO);
+		bindingContext.bindValue(observeTextCboEvidenceTypeObserveWidget, eVIDENCE_TYPEEvidenceMasterVOObserveValue, null, null);
+		//
+		IObservableValue observeTextTxtEvidenceDateObserveWidget = WidgetProperties.text(SWT.Modify).observe(txtEvidenceDate);
+		IObservableValue eVIDENCE_DATEEvidenceMasterVOObserveValue = BeanProperties.value("EVIDENCE_DATE").observe(evidenceMasterVO);
+		bindingContext.bindValue(observeTextTxtEvidenceDateObserveWidget, eVIDENCE_DATEEvidenceMasterVOObserveValue, null, null);
+		//
+		IObservableValue observeTextTxtImplementationTimesObserveWidget = WidgetProperties.text(SWT.Modify).observe(txtImplementationTimes);
+		IObservableValue iMPLEMENTATION_TIMESEvidenceMasterVOObserveValue = BeanProperties.value("IMPLEMENTATION_TIMES").observe(evidenceMasterVO);
+		bindingContext.bindValue(observeTextTxtImplementationTimesObserveWidget, iMPLEMENTATION_TIMESEvidenceMasterVOObserveValue, null, null);
+		//
+		IObservableValue observeTextTxtScoreObserveWidget = WidgetProperties.text(SWT.Modify).observe(txtScore);
+		IObservableValue sCOREEvidenceMasterVOObserveValue = BeanProperties.value("SCORE").observe(evidenceMasterVO);
+		bindingContext.bindValue(observeTextTxtScoreObserveWidget, sCOREEvidenceMasterVOObserveValue, null, null);
+		//
+		return bindingContext;
 	}
 }

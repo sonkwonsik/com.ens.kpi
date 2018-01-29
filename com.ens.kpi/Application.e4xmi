@@ -12,13 +12,7 @@
           </children>
         </children>
         <children xsi:type="basic:PartStack" xmi:id="_SSzXcAPwEeiyOP_iiR3Mjg" elementId="com.ens.kpi.partstack.RegistrationPart" containerData="400">
-          <children xsi:type="basic:Part" xmi:id="_ZJKcUAAAEeiMU4RAbV0wdA" elementId="com.ens.kpi.part.RegistrationPart" containerData="400" contributionURI="bundleclass://com.ens.kpi/com.ens.kpi.parts.RegistrationPart">
-            <toolbar xmi:id="_Y458AAPgEei-cbo3aRtnRQ" elementId="com.ens.kpi.toolbar.1">
-              <children xsi:type="menu:HandledToolItem" xmi:id="_rb0qUAPwEeiyOP_iiR3Mjg" elementId="com.ens.kpi.handledtoolitem.save" label="Save" iconURI="platform:/plugin/com.ens.kpi/icons/save_edit.png"/>
-              <children xsi:type="menu:ToolBarSeparator" xmi:id="_1MIGwAPwEeiyOP_iiR3Mjg" elementId="com.ens.kpi.toolbarseparator.0"/>
-              <children xsi:type="menu:HandledToolItem" xmi:id="_1ukFcAPwEeiyOP_iiR3Mjg" elementId="com.ens.kpi.handledtoolitem.delete" label="Delete"/>
-            </toolbar>
-          </children>
+          <children xsi:type="basic:Part" xmi:id="_ZJKcUAAAEeiMU4RAbV0wdA" elementId="com.ens.kpi.part.RegistrationPart" containerData="400" contributionURI="bundleclass://com.ens.kpi/com.ens.kpi.parts.RegistrationPart"/>
         </children>
       </children>
     </children>
@@ -35,7 +29,9 @@
     <trimBars xmi:id="_6wlLlcgZEeSyMNYR5xypkQ" elementId="com.ens.kpi.trimbar.top">
       <children xsi:type="menu:ToolBar" xmi:id="_6wlLlsgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.main.toolbar">
         <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLl8gZEeSyMNYR5xypkQ" elementId="com.ens.kpi.handleditem.trimbar.top.open" iconURI="platform:/plugin/com.ens.kpi/icons/sample.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLmMgZEeSyMNYR5xypkQ" elementId="com.ens.kpi.handleditem.trimbar.top.save" iconURI="platform:/plugin/com.ens.kpi/icons/save_edit.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLmMgZEeSyMNYR5xypkQ" elementId="com.ens.kpi.handleditem.trimbar.top.save" iconURI="platform:/plugin/com.ens.kpi/icons/if_save_49862.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:ToolBarSeparator" xmi:id="_nfi5oAP-Eeix79-4K9sz-A" elementId="com.ens.kpi.toolbarseparator.0"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_oJ9IkAP-Eeix79-4K9sz-A" elementId="com.ens.kpi.handledtoolitem.0" iconURI="platform:/plugin/com.ens.kpi/icons/if_close_309090.png"/>
       </children>
     </trimBars>
   </children>
