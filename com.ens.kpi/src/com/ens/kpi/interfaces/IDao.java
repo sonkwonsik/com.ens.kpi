@@ -10,8 +10,12 @@ public interface IDao {
 	
     void setConnection(Connection con);
 
-    void create(HashMap<String, String> valueList, HashMap<String, String> whereList);
+    boolean create(HashMap<String, String> valueList, HashMap<String, String> whereList);
+    
+    boolean insert(HashMap<String, String> valueList);
 
+    boolean update(HashMap<String, String> valueList, HashMap<String, String> whereList);
+    
     ResultSet select(HashMap<String, String> whereList, HashSet<String> groupbyList, HashSet<String> orderbyList);
     
     ResultSet select(HashMap<String, String> whereList, HashSet<String> groupbyList);
@@ -20,6 +24,6 @@ public interface IDao {
 
     List<?> getList(HashMap<String, String> whereList);
     
-    void delete(HashMap<String, String> whereList);
+    int delete(HashMap<String, String> whereList);
 
 }

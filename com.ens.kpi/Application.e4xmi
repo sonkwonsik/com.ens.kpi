@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_6wlLcMgZEeSyMNYR5xypkQ" elementId="com.ens.kpi.application" bindingContexts="_6wlLecgZEeSyMNYR5xypkQ">
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_6wlLccgZEeSyMNYR5xypkQ" elementId="com.ens.kpi.window.main" label="KPI관리" width="500" height="400">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_6wlLccgZEeSyMNYR5xypkQ" elementId="com.ens.kpi.window.main" label="KPI관리" iconURI="platform:/plugin/com.ens.kpi/icons/if_--02_1720772.png">
     <children xsi:type="basic:PartSashContainer" xmi:id="_6wlLksgZEeSyMNYR5xypkQ" elementId="com.ens.kpi.partsashcontainer.sample" containerData="1000" horizontal="true">
       <children xsi:type="basic:PartStack" xmi:id="_6wlLk8gZEeSyMNYR5xypkQ" elementId="com.ens.kpi.partstack.sample" containerData="400">
         <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="com.ens.kpi.part.sample" contributionURI="bundleclass://com.ens.kpi/com.ens.kpi.parts.SummaryPart" label="KPI 요약"/>
@@ -12,7 +12,14 @@
           </children>
         </children>
         <children xsi:type="basic:PartStack" xmi:id="_SSzXcAPwEeiyOP_iiR3Mjg" elementId="com.ens.kpi.partstack.RegistrationPart" containerData="400">
-          <children xsi:type="basic:Part" xmi:id="_ZJKcUAAAEeiMU4RAbV0wdA" elementId="com.ens.kpi.part.RegistrationPart" containerData="400" contributionURI="bundleclass://com.ens.kpi/com.ens.kpi.parts.RegistrationPart"/>
+          <children xsi:type="basic:Part" xmi:id="_ZJKcUAAAEeiMU4RAbV0wdA" elementId="com.ens.kpi.part.RegistrationPart" containerData="400" contributionURI="bundleclass://com.ens.kpi/com.ens.kpi.parts.RegistrationPart" label="Evidence Registration">
+            <toolbar xmi:id="_i9UmIAVzEeiZT--_RFby9A" elementId="com.ens.kpi.toolbar.1">
+              <children xsi:type="menu:HandledToolItem" xmi:id="_kQJf8AVzEeiZT--_RFby9A" elementId="com.ens.kpi.handledtoolitem.1" iconURI="platform:/plugin/com.ens.kpi/icons/new_wiz.png" command="_8otUUAV1EeiZT--_RFby9A"/>
+              <children xsi:type="menu:HandledToolItem" xmi:id="_qRbs8AVzEeiZT--_RFby9A" elementId="com.ens.kpi.handledtoolitem.2" iconURI="platform:/plugin/com.ens.kpi/icons/if_save_49862.png" tooltip="저장" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
+              <children xsi:type="menu:ToolBarSeparator" xmi:id="_w76A4AVzEeiZT--_RFby9A" elementId="com.ens.kpi.toolbarseparator.1"/>
+              <children xsi:type="menu:HandledToolItem" xmi:id="_tsZ_AAVzEeiZT--_RFby9A" elementId="com.ens.kpi.handledtoolitem.3" iconURI="platform:/plugin/com.ens.kpi/icons/if_080_Trash_183208.png" command="_sykiEAV1EeiZT--_RFby9A"/>
+            </toolbar>
+          </children>
         </children>
       </children>
     </children>
@@ -28,17 +35,22 @@
     </mainMenu>
     <trimBars xmi:id="_6wlLlcgZEeSyMNYR5xypkQ" elementId="com.ens.kpi.trimbar.top">
       <children xsi:type="menu:ToolBar" xmi:id="_6wlLlsgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.main.toolbar">
-        <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLl8gZEeSyMNYR5xypkQ" elementId="com.ens.kpi.handleditem.trimbar.top.open" iconURI="platform:/plugin/com.ens.kpi/icons/sample.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLmMgZEeSyMNYR5xypkQ" elementId="com.ens.kpi.handleditem.trimbar.top.save" iconURI="platform:/plugin/com.ens.kpi/icons/if_save_49862.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLl8gZEeSyMNYR5xypkQ" elementId="com.ens.kpi.handleditem.trimbar.top.open" iconURI="platform:/plugin/com.ens.kpi/icons/export_wiz.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLmMgZEeSyMNYR5xypkQ" elementId="com.ens.kpi.handleditem.trimbar.top.save" iconURI="platform:/plugin/com.ens.kpi/icons/icons8-save-26.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
         <children xsi:type="menu:ToolBarSeparator" xmi:id="_nfi5oAP-Eeix79-4K9sz-A" elementId="com.ens.kpi.toolbarseparator.0"/>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_oJ9IkAP-Eeix79-4K9sz-A" elementId="com.ens.kpi.handledtoolitem.0" iconURI="platform:/plugin/com.ens.kpi/icons/if_close_309090.png"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_oJ9IkAP-Eeix79-4K9sz-A" elementId="com.ens.kpi.handledtoolitem.0" iconURI="platform:/plugin/com.ens.kpi/icons/icons8-trash-can-26.png"/>
       </children>
+    </trimBars>
+    <trimBars xmi:id="_dCt3EAT-EeiGlORiGLlVnQ" elementId="com.ens.kpi.trimbar.0" side="Bottom">
+      <children xsi:type="menu:ToolControl" xmi:id="_8b1K0AUFEeiGlORiGLlVnQ" elementId="com.ens.kpi.toolcontrol.1" contributionURI="bundleclass://com.ens.kpi/com.ens.kpi.statusbar.MessageStatusBar"/>
     </trimBars>
   </children>
   <handlers xmi:id="_6wlLfcgZEeSyMNYR5xypkQ" elementId="com.ens.kpi.handler.quitCommand" contributionURI="bundleclass://com.ens.kpi/com.ens.kpi.handlers.QuitHandler" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
   <handlers xmi:id="_6wlLgcgZEeSyMNYR5xypkQ" elementId="com.ens.kpi.handler.openCommand" contributionURI="bundleclass://com.ens.kpi/com.ens.kpi.handlers.OpenHandler" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
   <handlers xmi:id="_6wlLhMgZEeSyMNYR5xypkQ" elementId="com.ens.kpi.handler.saveCommand" contributionURI="bundleclass://com.ens.kpi/com.ens.kpi.handlers.SaveHandler" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
   <handlers xmi:id="_6wlLh8gZEeSyMNYR5xypkQ" elementId="com.ens.kpi.handler.aboutCommand" contributionURI="bundleclass://com.ens.kpi/com.ens.kpi.handlers.AboutHandler" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
+  <handlers xmi:id="_z66dwAV1EeiZT--_RFby9A" elementId="com.ens.kpi.handler.DeleteCommand" contributionURI="bundleclass://com.ens.kpi/com.ens.kpi.handlers.DeleteHandler" command="_sykiEAV1EeiZT--_RFby9A"/>
+  <handlers xmi:id="_AflfQAV2EeiZT--_RFby9A" elementId="com.ens.kpi.handler.NewCommand" contributionURI="bundleclass://com.ens.kpi/com.ens.kpi.handlers.NewHandler" command="_8otUUAV1EeiZT--_RFby9A"/>
   <bindingTables xmi:id="_6wlLfsgZEeSyMNYR5xypkQ" elementId="com.ens.kpi.bindingtable" bindingContext="_6wlLecgZEeSyMNYR5xypkQ">
     <bindings xmi:id="_6wlLf8gZEeSyMNYR5xypkQ" elementId="com.ens.kpi.keybinding.m1q" keySequence="M1+Q" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
     <bindings xmi:id="_6wlLgsgZEeSyMNYR5xypkQ" elementId="com.ens.kpi.keybinding.m1o" keySequence="M1+O" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
@@ -53,6 +65,8 @@
   <commands xmi:id="_6wlLgMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.open" commandName="openCommand"/>
   <commands xmi:id="_6wlLg8gZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.save" commandName="saveCommand"/>
   <commands xmi:id="_6wlLhsgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.help.aboutAction" commandName="aboutCommand"/>
+  <commands xmi:id="_sykiEAV1EeiZT--_RFby9A" elementId="com.ens.kpi.command.DeleteAction" commandName="DeleteCommand"/>
+  <commands xmi:id="_8otUUAV1EeiZT--_RFby9A" elementId="com.ens.kpi.command.NewAction" commandName="NewCommand"/>
   <addons xmi:id="_6wlLcsgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_6wlLc8gZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_6wlLdMgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>

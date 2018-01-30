@@ -25,11 +25,58 @@ public class EvidenceTypeDAO implements IDao {
 	}
 
 	@Override
-	public void create(HashMap<String, String> valueList, HashMap<String, String> whereList) {
-		// TODO Auto-generated method stub
+	public boolean create(HashMap<String, String> valueList, HashMap<String, String> whereList) {
+		int	i	=	0;
+		long	affectedCnt	=	0;
+		String	column_clause	="";
+		String	value_clause	="";
+		
+		sql="insert into EVIDENCE_TYPE ( " ;
+		
+		for (Entry<String, String> entry : valueList.entrySet()) {
+			column_clause	+= entry.getKey();
+			value_clause	+= valueList.get(entry.getKey());
+			i++;
+			if (i==valueList.size()) {
+				column_clause	+=") values (" ;
+				value_clause	+=") " ;
+			} else {
+				column_clause	+=", " ;
+				value_clause	+=", " ;
+				
+			}
+			
+			System.out.println(entry.getKey()+" "+ valueList.get(entry.getKey()));
+			System.out.println(sql);
+        }
+		
+		try {
+			PreparedStatement pstmt = cn.prepareStatement(sql);
+			affectedCnt=pstmt.executeLargeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (affectedCnt==0) {
+				return false;
+			} else { 
+				return true;
+			}
+		}
 		
 	}
+	
+	@Override
+	public boolean insert(HashMap<String, String> valueList) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
+	@Override
+	public boolean update(HashMap<String, String> valueList, HashMap<String, String> whereList) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
 	@Override
 	public ResultSet select(HashMap<String, String> whereList, HashSet<String> groupbyList,
 			HashSet<String> orderbyList) {
@@ -88,9 +135,8 @@ public class EvidenceTypeDAO implements IDao {
 	}
 
 	@Override
-	public void delete(HashMap<String, String> whereList) {
-		// TODO Auto-generated method stub
-		
+	public int delete(HashMap<String, String> whereList) {
+		return 0;
 	}
 
 

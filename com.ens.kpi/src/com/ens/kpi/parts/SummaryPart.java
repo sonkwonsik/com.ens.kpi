@@ -12,6 +12,7 @@ import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 
 import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.e4.ui.model.application.ui.MDirtyable;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
@@ -61,6 +62,7 @@ public class SummaryPart {
 	ESelectionService selectionService;
 	@Inject
 	EPartService 	partService;
+	
 	TreeViewer		treeViewer;
 	Tree 			tree;
 	Connection 		con		=	null;
@@ -328,12 +330,12 @@ public class SummaryPart {
 		tree = treeViewer.getTree();
 		tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
 		tree.setHeaderVisible(true);
-		tree.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseDoubleClick(MouseEvent e) {
-				System.out.println("mouse dobule clicked");
-			}
-		});
+//		tree.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseDoubleClick(MouseEvent e) {
+//				System.out.println("mouse dobule clicked");
+//			}
+//		});
 		
 		treeViewer.setContentProvider(new TreeViewerContentProvider());
 		treeViewer.addDoubleClickListener(new  IDoubleClickListener() {

@@ -64,7 +64,7 @@ public class EvidencePart {
 	 */
 	@PostConstruct
 	public void createControls(Composite parent) {
-		String[] COLUMN_HEADER = new String[]{"증빙번호","등록일자","관점","전략과제","목표과제","증빙유형","목표치"};
+//		String[] COLUMN_HEADER = new String[]{"증빙번호","등록일자","관점","전략과제","목표과제","증빙유형","목표치"};
 		parent.setLayout(new GridLayout(1, false));
 		tableViewer = new TableViewer(parent, SWT.BORDER|SWT.FULL_SELECTION);
 		tableViewer.setUseHashlookup(true);    // table 렌더링 속도 향상
